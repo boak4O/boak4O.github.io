@@ -4,82 +4,80 @@
   <meta charset="UTF-8" />
   <title>Zavialovs – Family of Artists</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="The Zavialovs – a family of artists: abstract painting, sculpture, drawing and illustration." />
+  <meta name="description" content="The Zavialovs – a family of artists exploring abstract painting, sculpture and illustration." />
 
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #111111;
-      --muted: #777777;
-      --border: #e5e5e5;
-      --accent: #111111;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --shadow-soft: 0 14px 40px rgba(0,0,0,0.06);
-      --transition-fast: 0.18s ease-out;
+      --bg: #fafafa;
+      --bg-strong: #ffffff;
+      --text: #141414;
+      --muted: #7a7a7a;
+      --border: #e3e3e3;
+      --accent: #141414;
+      --accent-soft: #dcdcdc;
+      --transition-fast: 0.2s ease-out;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
-      padding: 32px 16px 64px;
+      line-height: 1.7;
     }
 
     .page {
-      max-width: 1100px;
+      max-width: 1160px;
       margin: 0 auto;
+      padding: 28px 16px 60px;
     }
 
-    header {
+    /* TOP BAR */
+
+    .top-bar {
       display: flex;
-      flex-direction: column;
-      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
       margin-bottom: 40px;
     }
 
-    @media (min-width: 720px) {
-      header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
-      }
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .brand-title {
-      font-size: 2.3rem;
-      letter-spacing: 0.08em;
+    .logo {
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-    }
-
-    .brand-subtitle {
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    nav {
-      display: flex;
-      gap: 12px;
       font-size: 0.9rem;
     }
 
-    nav a {
-      text-decoration: none;
+    .tagline {
+      font-size: 0.8rem;
       color: var(--muted);
-      padding: 4px 0;
-      position: relative;
     }
 
-    nav a::after {
+    .nav {
+      display: flex;
+      gap: 16px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav a::after {
       content: "";
       position: absolute;
       left: 0;
@@ -90,221 +88,310 @@
       transition: width var(--transition-fast);
     }
 
-    nav a:hover {
+    .nav a:hover {
       color: var(--accent);
     }
 
-    nav a:hover::after {
+    .nav a:hover::after {
       width: 100%;
     }
 
-    .hero {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      padding: 24px 24px 28px;
-      display: grid;
-      grid-template-columns: 1.3fr;
-      gap: 18px;
-      margin-bottom: 40px;
-      box-shadow: var(--shadow-soft);
-      background: #fcfcfc;
-    }
-
-    @media (min-width: 820px) {
-      .hero {
-        grid-template-columns: 1.3fr 1fr;
-        align-items: center;
+    @media (max-width: 720px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav {
+        flex-wrap: wrap;
       }
     }
 
-    .hero-title {
-      font-size: 1.6rem;
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 2fr);
+      gap: 32px;
+      padding: 40px 32px 36px;
+      border-radius: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-strong);
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 28px 20px 26px;
+      }
+    }
+
+    .hero-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+      color: var(--muted);
       margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 2.7vw, 2.6rem);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .hero-title span {
+      display: block;
     }
 
     .hero-text {
       font-size: 0.95rem;
       color: var(--muted);
+      max-width: 34rem;
     }
 
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 14px;
-      font-size: 0.82rem;
-    }
-
-    .pill {
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      padding: 4px 10px;
-    }
-
-    .hero-side {
-      border-radius: var(--radius-md);
-      border: 1px dashed var(--border);
-      padding: 16px 18px;
-      font-size: 0.85rem;
-      color: var(--muted);
-      background: #ffffff;
-    }
-
-    .hero-side strong {
-      color: var(--text);
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    section h2 {
-      font-size: 1.1rem;
-      letter-spacing: 0.1em;
+      margin-top: 18px;
+      font-size: 0.75rem;
       text-transform: uppercase;
-      margin-bottom: 18px;
-      color: var(--muted);
+      letter-spacing: 0.16em;
     }
 
-    .artists-grid {
+    .meta-pill {
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: #f4f4f4;
+    }
+
+    .hero-images {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 16px;
+      grid-template-rows: 2fr 1.3fr;
+      gap: 12px;
     }
 
-    @media (min-width: 720px) {
-      .artists-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+    .hero-img-large,
+    .hero-img-small {
+      position: relative;
+      overflow: hidden;
+      background: #e0e0e0;
+    }
+
+    .hero-img-large img,
+    .hero-img-small img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s ease-out;
+    }
+
+    .hero-img-large:hover img,
+    .hero-img-small:hover img {
+      transform: scale(1.04);
+    }
+
+    .hero-credit {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      padding: 3px 9px;
+      background: rgba(250, 250, 250, 0.88);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 880px) {
+      .hero-images {
+        grid-template-rows: 220px 140px;
       }
     }
 
-    .artist-card {
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border);
-      padding: 14px 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-      background: #fcfcfc;
+    /* SECTION BASE */
+
+    section {
+      padding: 34px 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .artist-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-soft);
-      border-color: #dcdcdc;
+    .section-headline {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.8rem;
+    }
+
+    .section-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 720px) {
+      .section-headline {
+        flex-direction: column;
+      }
+    }
+
+    /* ARTISTS LIST – LIKE PROJECT INDEX */
+
+    .artists-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 2.4fr);
+      gap: 18px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 880px) {
+      .artists-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .artists-col-labels {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .artist-row {
+      display: grid;
+      grid-template-columns: 0.8fr 2.2fr;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid var(--accent-soft);
+    }
+
+    .artist-row:last-child {
+      border-bottom: 1px solid var(--accent-soft);
     }
 
     .artist-name {
-      font-weight: 600;
-      letter-spacing: 0.06em;
       font-size: 0.9rem;
       text-transform: uppercase;
+      letter-spacing: 0.16em;
     }
 
     .artist-role {
-      font-size: 0.83rem;
+      font-size: 0.8rem;
       color: var(--muted);
+      margin-bottom: 4px;
     }
 
-    .artist-notes {
-      font-size: 0.8rem;
-      color: var(--text);
-    }
-
-    .artist-link {
-      margin-top: 10px;
-      font-size: 0.8rem;
+    .artist-desc {
+      font-size: 0.86rem;
     }
 
     .artist-link a {
-      text-decoration: none;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      color: var(--accent);
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .artist-link a:hover {
-      background: #f5f5f5;
-      border-color: #d0d0d0;
-      transform: translateY(-1px);
-    }
-
-    .gallery-intro {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    @media (min-width: 640px) {
-      .gallery-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    @media (min-width: 980px) {
-      .gallery-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-    }
-
-    .gallery-item {
+      gap: 4px;
+      font-size: 0.8rem;
+      margin-top: 4px;
+      text-decoration: none;
+      color: var(--accent);
       position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      cursor: zoom-in;
-      border: 1px solid var(--border);
-      background: #f7f7f7;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
     }
 
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      vertical-align: middle;
-      transition: transform var(--transition-fast), filter var(--transition-fast);
-    }
-
-    .gallery-item:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-soft);
-      border-color: #dcdcdc;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.04);
-      filter: saturate(1.05);
-    }
-
-    .gallery-label {
+    .artist-link a::after {
+      content: "";
       position: absolute;
-      bottom: 8px;
-      left: 8px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.86);
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: #333;
+      left: 0;
+      bottom: -1px;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width var(--transition-fast);
     }
+
+    .artist-link a:hover::after {
+      width: 100%;
+    }
+
+    /* WORKS GRID */
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    @media (max-width: 960px) {
+      .works-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .works-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .work-item {
+      border: 1px solid var(--accent-soft);
+      background: var(--bg-strong);
+      position: relative;
+      cursor: zoom-in;
+      overflow: hidden;
+    }
+
+    .work-item img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease-out;
+    }
+
+    .work-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .work-meta {
+      padding: 10px 11px 12px;
+      border-top: 1px solid var(--accent-soft);
+      font-size: 0.78rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .work-title {
+      font-weight: 500;
+    }
+
+    .work-artist {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      font-size: 0.74rem;
+      white-space: nowrap;
+    }
+
+    /* LIGHTBOX */
 
     .lightbox-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.72);
+      background: rgba(0, 0, 0, 0.78);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -320,236 +407,305 @@
     }
 
     .lightbox-inner {
-      max-width: 90vw;
-      max-height: 85vh;
-      border-radius: 18px;
+      max-width: 92vw;
+      max-height: 86vh;
       background: #ffffff;
       padding: 12px 12px 16px;
-      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
       display: flex;
       flex-direction: column;
       gap: 10px;
-      transform: scale(0.95);
-      transition: transform 0.18s ease-out;
     }
 
-    .lightbox-backdrop.open .lightbox-inner {
-      transform: scale(1);
-    }
-
-    .lightbox-header {
+    .lightbox-head {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      font-size: 0.85rem;
+      align-items: baseline;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
       color: var(--muted);
-      padding: 0 4px;
     }
 
     .lightbox-close {
       border: none;
       background: transparent;
-      font-size: 1.2rem;
       cursor: pointer;
-      line-height: 1;
-      padding: 4px;
+      font-size: 1.1rem;
+      padding: 3px;
       color: var(--muted);
-      transition: color var(--transition-fast), transform var(--transition-fast);
     }
 
-    .lightbox-close:hover {
-      color: var(--accent);
-      transform: translateY(-1px);
+    .lightbox-image {
+      border-top: 1px solid var(--accent-soft);
+      border-bottom: 1px solid var(--accent-soft);
+      padding: 8px 0;
     }
 
-    .lightbox-image-wrapper {
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .lightbox-image-wrapper img {
+    .lightbox-image img {
       max-width: 100%;
       max-height: 70vh;
       display: block;
       object-fit: contain;
-      background: #fafafa;
     }
 
     .lightbox-caption {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--muted);
-      padding: 0 4px;
     }
 
+    /* FOOTER */
+
     footer {
-      margin-top: 40px;
+      padding-top: 20px;
       font-size: 0.75rem;
       color: var(--muted);
-      border-top: 1px solid var(--border);
-      padding-top: 14px;
       display: flex;
       justify-content: space-between;
-      gap: 10px;
+      gap: 16px;
       flex-wrap: wrap;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <header>
-      <div class="brand">
-        <div class="brand-title">Zavialovs</div>
-        <p class="brand-subtitle">
-          A family of artists working across abstract painting, sculpture, drawing & illustration.
+    <!-- TOP BAR -->
+    <header class="top-bar">
+      <div>
+        <div class="logo">ZAVIALOVS</div>
+        <p class="tagline">
+          A family of artists working across abstract painting, sculpture, drawing &amp; illustration.
         </p>
       </div>
-      <nav>
+      <nav class="nav">
         <a href="#artists">Artists</a>
-        <a href="#gallery">Gallery</a>
+        <a href="#works">Works</a>
+        <a href="#about">About</a>
       </nav>
     </header>
 
-    <main>
-      <section class="hero">
+    <!-- HERO -->
+    <section class="hero" id="about">
+      <div>
+        <p class="hero-kicker">Family studio</p>
+        <h1 class="hero-title">
+          <span>Art can seem simple.</span>
+          <span>Until you look closely.</span>
+        </h1>
+        <p class="hero-text">
+          The Zavialovs explore colour, line and form through bold abstraction, figurative work,
+          fine painting and intricate illustration. This portfolio brings together selected works
+          from the family’s shared practice.
+        </p>
+        <div class="hero-meta">
+          <span class="meta-pill">Abstract painting</span>
+          <span class="meta-pill">Figurative &amp; expressionist work</span>
+          <span class="meta-pill">Sculpture &amp; illustration</span>
+        </div>
+      </div>
+
+      <div class="hero-images">
+        <div class="hero-img-large">
+          <!-- Replace with a strong hero artwork image -->
+          <img src="images/hero-1.jpg" alt="Artwork from the Zavialovs family" />
+          <div class="hero-credit">Selected works</div>
+        </div>
+        <div class="hero-img-small">
+          <img src="images/hero-2.jpg" alt="Detail from a Zavialovs artwork" />
+          <div class="hero-credit">Detail</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTISTS -->
+    <section id="artists">
+      <div class="section-headline">
+        <h2 class="section-title">Artists</h2>
+        <p class="section-note">
+          Four related but distinct practices – abstract, figurative, sculptural and illustrative.
+        </p>
+      </div>
+
+      <div class="artists-list">
+        <div class="artists-col-labels">
+          <span>Artist</span>
+          <span>Practice</span>
+        </div>
+
         <div>
-          <h1 class="hero-title">Four voices, one family studio.</h1>
-          <p class="hero-text">
-            The Zavialovs explore colour, line and form through bold abstraction, figurative work,
-            fine painting and intricate illustration. This is a selection from the family’s shared practice.
-          </p>
-          <div class="hero-meta">
-            <span class="pill">Abstract & figurative painting</span>
-            <span class="pill">Sculpture & sketching</span>
-            <span class="pill">Illustration</span>
+          <!-- Michael -->
+          <div class="artist-row">
+            <div class="artist-name">Michael</div>
+            <div>
+              <div class="artist-role">Abstract painter · Sculptor · Sketcher</div>
+              <p class="artist-desc">
+                Bold colour, energetic compositions and fine painting skills. Michael moves
+                between canvas, sculpture and sketchbook, chasing rhythm and movement.
+              </p>
+            </div>
+          </div>
+
+          <!-- Natasha -->
+          <div class="artist-row">
+            <div class="artist-name">Natasha</div>
+            <div>
+              <div class="artist-role">Abstract &amp; figurative painter · Sketcher</div>
+              <p class="artist-desc">
+                Colourful and expressionistic, Natasha works where abstraction meets the figure,
+                layering gestures, marks and emotion.
+              </p>
+            </div>
+          </div>
+
+          <!-- Anna -->
+          <div class="artist-row">
+            <div class="artist-name">Anna</div>
+            <div>
+              <div class="artist-role">Painter &amp; multidisciplinary artist</div>
+              <p class="artist-desc">
+                Anna’s work is presented on her personal website, featuring selected series and
+                exhibitions.
+              </p>
+              <p class="artist-link">
+                <!-- TODO: replace href with Anna's real website -->
+                <a href="https://example.com/anna" target="_blank" rel="noopener noreferrer">
+                  Visit Anna’s website <span aria-hidden="true">↗</span>
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Vas -->
+          <div class="artist-row">
+            <div class="artist-name">Vas</div>
+            <div>
+              <div class="artist-role">Intricate illustrator</div>
+              <p class="artist-desc">
+                Vas creates detailed, intricate illustration – fine lines, layered patterns and
+                quiet, patient worlds on paper.
+              </p>
+            </div>
           </div>
         </div>
-        <div class="hero-side">
-          <strong>Note</strong><br />
-          All works and images remain © the artists. For enquiries or permissions, please contact the
-          Zavialovs family directly.
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="artists">
-        <h2>Artists</h2>
-        <div class="artists-grid">
-          <article class="artist-card">
-            <div class="artist-name">Michael</div>
-            <div class="artist-role">Abstract painter · Sculptor · Sketcher</div>
-            <p class="artist-notes">
-              Bold colour, energetic compositions and fine painting skills. Michael moves between canvas,
-              sculpture and sketchbook, chasing rhythm and movement.
-            </p>
-          </article>
-
-          <article class="artist-card">
-            <div class="artist-name">Natasha</div>
-            <div class="artist-role">Abstract & figurative painter · Sketcher</div>
-            <p class="artist-notes">
-              Colourful and expressionistic, Natasha works where abstraction meets the figure, layering
-              gestures, marks and emotion.
-            </p>
-          </article>
-
-          <article class="artist-card">
-            <div class="artist-name">Anna</div>
-            <div class="artist-role">Painter & multidisciplinary artist</div>
-            <p class="artist-notes">
-              Anna’s work is presented on her personal website, featuring selected series and exhibitions.
-            </p>
-            <div class="artist-link">
-              <!-- change this to her real URL -->
-              <a href="https://example.com/anna" target="_blank" rel="noopener noreferrer">
-                Visit Anna’s website <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="artist-card">
-            <div class="artist-name">Vas</div>
-            <div class="artist-role">Intricate illustrator</div>
-            <p class="artist-notes">
-              Vas creates detailed, intricate illustration – fine lines, layered patterns and quiet,
-              patient worlds on paper.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="gallery">
-        <h2>Selected works</h2>
-        <p class="gallery-intro">
-          Click any piece to view it larger. Replace the sample filenames with your own images in an
-          <code>images/</code> folder.
+    <!-- WORKS -->
+    <section id="works">
+      <div class="section-headline">
+        <h2 class="section-title">Selected works</h2>
+        <p class="section-note">
+          Click any piece to view it larger. Image titles and artists are shown beneath each work.
         </p>
+      </div>
 
-        <div class="gallery-grid">
-          <button class="gallery-item" data-artist="Michael" data-title="Untitled energy study" data-full="images/michael-1.jpg">
-            <img src="images/michael-1.jpg" alt="Bold abstract painting by Michael" />
-            <span class="gallery-label">Michael</span>
-          </button>
+      <div class="works-grid">
+        <!-- You can duplicate / adjust as needed -->
 
-          <button class="gallery-item" data-artist="Michael" data-title="Colour field sketch" data-full="images/michael-2.jpg">
-            <img src="images/michael-2.jpg" alt="Abstract colour field work by Michael" />
-            <span class="gallery-label">Michael</span>
-          </button>
+        <!-- Michael -->
+        <button class="work-item"
+                data-artist="Michael"
+                data-title="Untitled energy study"
+                data-full="images/michael-1.jpg">
+          <img src="images/michael-1.jpg" alt="Abstract work by Michael" />
+          <div class="work-meta">
+            <span class="work-title">Untitled energy study</span>
+            <span class="work-artist">Michael</span>
+          </div>
+        </button>
 
-          <button class="gallery-item" data-artist="Natasha" data-title="Figurative fragment" data-full="images/natasha-1.jpg">
-            <img src="images/natasha-1.jpg" alt="Expressionistic figurative painting by Natasha" />
-            <span class="gallery-label">Natasha</span>
-          </button>
+        <button class="work-item"
+                data-artist="Michael"
+                data-title="Colour field sketch"
+                data-full="images/michael-2.jpg">
+          <img src="images/michael-2.jpg" alt="Colour field work by Michael" />
+          <div class="work-meta">
+            <span class="work-title">Colour field sketch</span>
+            <span class="work-artist">Michael</span>
+          </div>
+        </button>
 
-          <button class="gallery-item" data-artist="Natasha" data-title="Expression in colour" data-full="images/natasha-2.jpg">
-            <img src="images/natasha-2.jpg" alt="Colourful abstract painting by Natasha" />
-            <span class="gallery-label">Natasha</span>
-          </button>
+        <!-- Natasha -->
+        <button class="work-item"
+                data-artist="Natasha"
+                data-title="Figurative fragment"
+                data-full="images/natasha-1.jpg">
+          <img src="images/natasha-1.jpg" alt="Figurative painting by Natasha" />
+          <div class="work-meta">
+            <span class="work-title">Figurative fragment</span>
+            <span class="work-artist">Natasha</span>
+          </div>
+        </button>
 
-          <button class="gallery-item" data-artist="Vas" data-title="Intricate study I" data-full="images/vas-1.jpg">
-            <img src="images/vas-1.jpg" alt="Intricate illustration by Vas" />
-            <span class="gallery-label">Vas</span>
-          </button>
+        <button class="work-item"
+                data-artist="Natasha"
+                data-title="Expression in colour"
+                data-full="images/natasha-2.jpg">
+          <img src="images/natasha-2.jpg" alt="Colourful abstract painting by Natasha" />
+          <div class="work-meta">
+            <span class="work-title">Expression in colour</span>
+            <span class="work-artist">Natasha</span>
+          </div>
+        </button>
 
-          <button class="gallery-item" data-artist="Vas" data-title="Intricate study II" data-full="images/vas-2.jpg">
-            <img src="images/vas-2.jpg" alt="Fine line illustration by Vas" />
-            <span class="gallery-label">Vas</span>
-          </button>
-        </div>
-      </section>
-    </main>
+        <!-- Vas -->
+        <button class="work-item"
+                data-artist="Vas"
+                data-title="Intricate study I"
+                data-full="images/vas-1.jpg">
+          <img src="images/vas-1.jpg" alt="Intricate illustration by Vas" />
+          <div class="work-meta">
+            <span class="work-title">Intricate study I</span>
+            <span class="work-artist">Vas</span>
+          </div>
+        </button>
 
+        <button class="work-item"
+                data-artist="Vas"
+                data-title="Intricate study II"
+                data-full="images/vas-2.jpg">
+          <img src="images/vas-2.jpg" alt="Fine line illustration by Vas" />
+          <div class="work-meta">
+            <span class="work-title">Intricate study II</span>
+            <span class="work-artist">Vas</span>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX -->
     <div class="lightbox-backdrop" id="lightbox" aria-hidden="true">
       <div class="lightbox-inner" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
-        <div class="lightbox-header">
-          <div id="lightbox-title"></div>
+        <div class="lightbox-head">
+          <span id="lightbox-title"></span>
           <button class="lightbox-close" type="button" aria-label="Close">×</button>
         </div>
-        <div class="lightbox-image-wrapper">
+        <div class="lightbox-image">
           <img id="lightbox-image" src="" alt="" />
         </div>
         <div class="lightbox-caption" id="lightbox-caption"></div>
       </div>
     </div>
 
+    <!-- FOOTER -->
     <footer>
       <span>© Zavialovs – all works by the respective artists.</span>
-      <span>Built as a minimal portfolio for family & friends.</span>
+      <span>For enquiries or permissions, please contact the family directly.</span>
     </footer>
   </div>
 
   <script>
     (function () {
       const lightbox = document.getElementById("lightbox");
-      const lightboxImage = document.getElementById("lightbox-image");
-      const lightboxTitle = document.getElementById("lightbox-title");
-      const lightboxCaption = document.getElementById("lightbox-caption");
-      const closeButton = lightbox.querySelector(".lightbox-close");
+      const lbImage = document.getElementById("lightbox-image");
+      const lbTitle = document.getElementById("lightbox-title");
+      const lbCaption = document.getElementById("lightbox-caption");
+      const closeBtn = document.querySelector(".lightbox-close");
 
       function openLightbox(src, artist, title) {
-        lightboxImage.src = src;
-        lightboxImage.alt = title + " by " + artist;
-        lightboxTitle.textContent = artist;
-        lightboxCaption.textContent = title + " · " + artist;
+        lbImage.src = src;
+        lbImage.alt = title + " by " + artist;
+        lbTitle.textContent = artist.toUpperCase();
+        lbCaption.textContent = title + " · " + artist;
         lightbox.classList.add("open");
         lightbox.setAttribute("aria-hidden", "false");
       }
@@ -557,19 +713,19 @@
       function closeLightbox() {
         lightbox.classList.remove("open");
         lightbox.setAttribute("aria-hidden", "true");
-        lightboxImage.src = "";
+        lbImage.src = "";
       }
 
-      document.querySelectorAll(".gallery-item").forEach(function (item) {
+      document.querySelectorAll(".work-item").forEach(function (item) {
         item.addEventListener("click", function () {
-          const full = item.getAttribute("data-full");
+          const src = item.getAttribute("data-full");
           const artist = item.getAttribute("data-artist") || "";
           const title = item.getAttribute("data-title") || "";
-          openLightbox(full, artist, title);
+          openLightbox(src, artist, title);
         });
       });
 
-      closeButton.addEventListener("click", function (event) {
+      closeBtn.addEventListener("click", function (event) {
         event.stopPropagation();
         closeLightbox();
       });
