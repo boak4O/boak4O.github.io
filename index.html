@@ -316,3 +316,276 @@
 
     .lightbox-backdrop.open {
       opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-inner {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 18px;
+      background: #ffffff;
+      padding: 12px 12px 16px;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transform: scale(0.95);
+      transition: transform 0.18s ease-out;
+    }
+
+    .lightbox-backdrop.open .lightbox-inner {
+      transform: scale(1);
+    }
+
+    .lightbox-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 0 4px;
+    }
+
+    .lightbox-close {
+      border: none;
+      background: transparent;
+      font-size: 1.2rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      color: var(--muted);
+      transition: color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .lightbox-close:hover {
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .lightbox-image-wrapper {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .lightbox-image-wrapper img {
+      max-width: 100%;
+      max-height: 70vh;
+      display: block;
+      object-fit: contain;
+      background: #fafafa;
+    }
+
+    .lightbox-caption {
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 0 4px;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-title">Zavialovs</div>
+        <p class="brand-subtitle">
+          A family of artists working across abstract painting, sculpture, drawing & illustration.
+        </p>
+      </div>
+      <nav>
+        <a href="#artists">Artists</a>
+        <a href="#gallery">Gallery</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <h1 class="hero-title">Four voices, one family studio.</h1>
+          <p class="hero-text">
+            The Zavialovs explore colour, line and form through bold abstraction, figurative work,
+            fine painting and intricate illustration. This is a selection from the family’s shared practice.
+          </p>
+          <div class="hero-meta">
+            <span class="pill">Abstract & figurative painting</span>
+            <span class="pill">Sculpture & sketching</span>
+            <span class="pill">Illustration</span>
+          </div>
+        </div>
+        <div class="hero-side">
+          <strong>Note</strong><br />
+          All works and images remain © the artists. For enquiries or permissions, please contact the
+          Zavialovs family directly.
+        </div>
+      </section>
+
+      <section id="artists">
+        <h2>Artists</h2>
+        <div class="artists-grid">
+          <article class="artist-card">
+            <div class="artist-name">Michael</div>
+            <div class="artist-role">Abstract painter · Sculptor · Sketcher</div>
+            <p class="artist-notes">
+              Bold colour, energetic compositions and fine painting skills. Michael moves between canvas,
+              sculpture and sketchbook, chasing rhythm and movement.
+            </p>
+          </article>
+
+          <article class="artist-card">
+            <div class="artist-name">Natasha</div>
+            <div class="artist-role">Abstract & figurative painter · Sketcher</div>
+            <p class="artist-notes">
+              Colourful and expressionistic, Natasha works where abstraction meets the figure, layering
+              gestures, marks and emotion.
+            </p>
+          </article>
+
+          <article class="artist-card">
+            <div class="artist-name">Anna</div>
+            <div class="artist-role">Painter & multidisciplinary artist</div>
+            <p class="artist-notes">
+              Anna’s work is presented on her personal website, featuring selected series and exhibitions.
+            </p>
+            <div class="artist-link">
+              <!-- change this to her real URL -->
+              <a href="https://example.com/anna" target="_blank" rel="noopener noreferrer">
+                Visit Anna’s website <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="artist-card">
+            <div class="artist-name">Vas</div>
+            <div class="artist-role">Intricate illustrator</div>
+            <p class="artist-notes">
+              Vas creates detailed, intricate illustration – fine lines, layered patterns and quiet,
+              patient worlds on paper.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="gallery">
+        <h2>Selected works</h2>
+        <p class="gallery-intro">
+          Click any piece to view it larger. Replace the sample filenames with your own images in an
+          <code>images/</code> folder.
+        </p>
+
+        <div class="gallery-grid">
+          <button class="gallery-item" data-artist="Michael" data-title="Untitled energy study" data-full="images/michael-1.jpg">
+            <img src="images/michael-1.jpg" alt="Bold abstract painting by Michael" />
+            <span class="gallery-label">Michael</span>
+          </button>
+
+          <button class="gallery-item" data-artist="Michael" data-title="Colour field sketch" data-full="images/michael-2.jpg">
+            <img src="images/michael-2.jpg" alt="Abstract colour field work by Michael" />
+            <span class="gallery-label">Michael</span>
+          </button>
+
+          <button class="gallery-item" data-artist="Natasha" data-title="Figurative fragment" data-full="images/natasha-1.jpg">
+            <img src="images/natasha-1.jpg" alt="Expressionistic figurative painting by Natasha" />
+            <span class="gallery-label">Natasha</span>
+          </button>
+
+          <button class="gallery-item" data-artist="Natasha" data-title="Expression in colour" data-full="images/natasha-2.jpg">
+            <img src="images/natasha-2.jpg" alt="Colourful abstract painting by Natasha" />
+            <span class="gallery-label">Natasha</span>
+          </button>
+
+          <button class="gallery-item" data-artist="Vas" data-title="Intricate study I" data-full="images/vas-1.jpg">
+            <img src="images/vas-1.jpg" alt="Intricate illustration by Vas" />
+            <span class="gallery-label">Vas</span>
+          </button>
+
+          <button class="gallery-item" data-artist="Vas" data-title="Intricate study II" data-full="images/vas-2.jpg">
+            <img src="images/vas-2.jpg" alt="Fine line illustration by Vas" />
+            <span class="gallery-label">Vas</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <div class="lightbox-backdrop" id="lightbox" aria-hidden="true">
+      <div class="lightbox-inner" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+        <div class="lightbox-header">
+          <div id="lightbox-title"></div>
+          <button class="lightbox-close" type="button" aria-label="Close">×</button>
+        </div>
+        <div class="lightbox-image-wrapper">
+          <img id="lightbox-image" src="" alt="" />
+        </div>
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+      </div>
+    </div>
+
+    <footer>
+      <span>© Zavialovs – all works by the respective artists.</span>
+      <span>Built as a minimal portfolio for family & friends.</span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightbox-image");
+      const lightboxTitle = document.getElementById("lightbox-title");
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      const closeButton = lightbox.querySelector(".lightbox-close");
+
+      function openLightbox(src, artist, title) {
+        lightboxImage.src = src;
+        lightboxImage.alt = title + " by " + artist;
+        lightboxTitle.textContent = artist;
+        lightboxCaption.textContent = title + " · " + artist;
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImage.src = "";
+      }
+
+      document.querySelectorAll(".gallery-item").forEach(function (item) {
+        item.addEventListener("click", function () {
+          const full = item.getAttribute("data-full");
+          const artist = item.getAttribute("data-artist") || "";
+          const title = item.getAttribute("data-title") || "";
+          openLightbox(full, artist, title);
+        });
+      });
+
+      closeButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        closeLightbox();
+      });
+
+      lightbox.addEventListener("click", function (event) {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && lightbox.classList.contains("open")) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
