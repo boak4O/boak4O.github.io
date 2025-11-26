@@ -1,45 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Zavialovs</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #ffffff;
-      color: #000000;
-      font-family: system-ui, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      height: 100vh;
-      text-align: center;
-    }
-    h1 {
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      margin-bottom: 20px;
-    }
-    a {
-      display: block;
-      text-decoration: none;
-      color: #000000;
-      margin: 6px 0;
-      font-size: 1rem;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <h1>ZAVIALOVS</h1>
-  <a href="michael.html">Michael</a>
-  <a href="natasha.html">Natasha</a>
-  <a href="anna.html">Anna</a>
-  <a href="vas.html">Vas</a>
-</body>
-</html>
+\<!DOCTYPE html>\
+<html lang="en">\
+<head>\
+  <meta charset="UTF-8">\
+  <title>Zavialovs | Family Art Portfolio</title>\
+  <meta name="viewport" content="width=device-width, initial-scale=1">\
+  <meta name="description" content="Explore the Zavialovs family art portfolio with highlights for each artist, gallery previews, and a downloadable site bundle.">\
+  <link rel="stylesheet" href="styles.css">\
+</head>\
+<body class="page-home">\
+  <a class="skip-link" href="#main-content">Skip to main content</a>\
+  <header>\
+    <div class="branding">ZAVIALOVS</div>\
+    <nav aria-label="Primary navigation">\
+      <a class="nav-link home-link" href="index.html" aria-current="page">Home</a>\
+      <a class="nav-link michael-link" href="michael.html">Michael</a>\
+      <a class="nav-link natasha-link" href="natasha.html">Natasha</a>\
+      <a class="nav-link anna-link" href="anna.html">Anna</a>\
+      <a class="nav-link vas-link" href="vas.html">Vas</a>\
+    </nav>\
+  </header>\
+\
+  <main id="main-content">\
+    <section class="hero">\
+      <div class="hero-copy">\
+        <h1>Family artistry in one curated space</h1>\
+        <p>Welcome to Zavialovs, a growing archive of the artwork, explorations, and visual stories created by our family. Browse each artist to see works-in-progress and finished pieces as we document our creative journey together.</p>\
+        <div class="section-title" aria-hidden="true">\
+          <span>Our artists</span>\
+        </div>\
+      </div>\
+      <div class="hero-visual">\
+        <img src="images/placeholder.svg" alt="Soft gradient illustration framing a gallery layout." loading="lazy">\
+      </div>\
+    </section>\
+\
+    <section aria-labelledby="artists">\
+      <div class="card-grid" id="artists">\
+        <a class="card" href="michael.html">\
+          <div class="badge">Oil &amp; Acrylic</div>\
+          <h3>Michael</h3>\
+          <p>Landscape studies, bold color palettes, and textured canvases inspired by the Pacific Northwest.</p>\
+        </a>\
+        <a class="card" href="natasha.html">\
+          <div class="badge">Mixed Media</div>\
+          <h3>Natasha</h3>\
+          <p>Pattern-rich works that combine textiles, photography, and printmaking with thoughtful storytelling.</p>\
+        </a>\
+        <a class="card" href="anna.html">\
+          <div class="badge">Illustration</div>\
+          <h3>Anna</h3>\
+          <p>Gentle character illustrations, sketchbook snippets, and playful digital experiments.</p>\
+        </a>\
+        <a class="card" href="vas.html">\
+          <div class="badge">Sculpture</div>\
+          <h3>Vas</h3>\
+          <p>Clay studies, small form sculptures, and explorations in material texture and light.</p>\
+        </a>\
+      </div>\
+    </section>\
+\
+    <section class="info-grid" aria-labelledby="updates">\
+      <div>\
+        <div class="section-title" id="updates"><span>Latest notes</span></div>\
+        <div class="callout">\
+          <h3>What just changed</h3>\
+          <p>We refreshed the site navigation for clarity, added a skip link for accessibility, and outlined how to keep the gallery updated. You can always return to this section to see what was adjusted most recently.</p>\
+          <ul>\
+            <li>Sticky navigation now highlights the page you are browsing.</li>\
+            <li>Screen reader and keyboard users can jump directly to the main content.</li>\
+            <li>Use the README to add new art cards with your own images.</li>\
+          </ul>\
+        </div>\
+      </div>\
+\
+      <div>\
+        <div class="section-title" aria-hidden="true"><span>How to explore</span></div>\
+        <div class="callout">\
+          <h3>Start a tour</h3>\
+          <p>Select an artist above to see their current gallery cards. Replace any placeholder image with a photo of your work and update the title and description to publish new pieces.</p>\
+          <p>If you want a quick overview, scroll through the home page cards or hop into each artist using the sticky navigation.</p>\
+        </div>\
+      </div>\
+\
+      <div>\
+        <div class="section-title" aria-hidden="true"><span>Download</span></div>\
+        <div class="callout">\
+          <h3>Download the full site</h3>\
+          <p>Grab a zipped folder with the current HTML, CSS, and placeholder images so you can customize the portfolio offline or share it directly.</p>\
+          <div class="download-actions">\
+            <a class="button" href="downloads/zavialovs-site.zip" download>\
+              <span class="button-icon" aria-hidden="true">\uc0\u8681 </span>\
+              Download site files\
+            </a>\
+            <p class="callout-meta">Includes all pages, styles, and the placeholder image.</p>\
+          </div>\
+        </div>\
+      </div>\
+    </section>\
+  </main>\
+\
+  <footer>\
+    Curated with love by the Zavialov family. New work will be added frequently.\
+  </footer>\
+</body>\
+</html>\
+}
