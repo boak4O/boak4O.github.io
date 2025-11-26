@@ -59,6 +59,39 @@
       font-size: 0.8rem;
       margin-top: 6px;
     }
+      /* Horizontal gallery strip */
+
+.gallery-strip {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 8px 0 4px;
+  scroll-snap-type: x mandatory;
+}
+
+.gallery-strip::-webkit-scrollbar {
+  height: 4px;
+}
+
+.gallery-strip::-webkit-scrollbar-thumb {
+  background: #ccc;
+}
+
+.work {
+  flex: 0 0 auto;
+  width: clamp(220px, 50vw, 360px);
+  scroll-snap-align: center;
+}
+
+.work img {
+  width: 100%;
+  display: block;
+}
+
+.work .caption {
+  font-size: 0.8rem;
+  margin-top: 6px;
+}
   </style>
 </head>
 <body>
@@ -96,42 +129,8 @@
 
   <!-- add more images as needed -->
 </div>
-
   </div>
 
-  /* Horizontal gallery strip */
-
-.gallery-strip {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding: 8px 0 4px;
-  scroll-snap-type: x mandatory;
-}
-
-.gallery-strip::-webkit-scrollbar {
-  height: 4px;
-}
-
-.gallery-strip::-webkit-scrollbar-thumb {
-  background: #ccc;
-}
-
-.work {
-  flex: 0 0 auto;
-  width: clamp(220px, 50vw, 360px);
-  scroll-snap-align: center;
-}
-
-.work img {
-  width: 100%;
-  display: block;
-}
-
-.work .caption {
-  font-size: 0.8rem;
-  margin-top: 6px;
-}
 
 </body>
 </html>
