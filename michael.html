@@ -48,50 +48,131 @@
       letter-spacing: 0.14em;
       margin-bottom: 16px;
     }
-    .work {
-      margin-bottom: 24px;
+
+    /* CAROUSEL */
+
+    .carousel {
+      position: relative;
+      background: #ffffff;
     }
-    .work img {
+
+    .carousel-track {
+      position: relative;
+      overflow: hidden;
+      min-height: 260px;
+      background: #ffffff;
+    }
+
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease; /* fade duration */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .carousel-slide.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .carousel-image {
       width: 100%;
       display: block;
+      cursor: zoom-in;
     }
-    .caption {
+
+    .carousel-caption {
       font-size: 0.8rem;
       margin-top: 6px;
     }
-      /* Horizontal gallery strip */
 
-.gallery-strip {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding: 8px 0 4px;
-  scroll-snap-type: x mandatory;
-}
+    .carousel-arrows {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      user-select: none;
+    }
 
-.gallery-strip::-webkit-scrollbar {
-  height: 4px;
-}
+    .carousel-arrow {
+      border: none;
+      background: transparent;
+      font-size: 0.9rem;
+      padding: 4px 0;
+      cursor: pointer;
+    }
 
-.gallery-strip::-webkit-scrollbar-thumb {
-  background: #ccc;
-}
+    .carousel-arrow span {
+      display: inline-block;
+      padding: 2px 6px;
+    }
 
-.work {
-  flex: 0 0 auto;
-  width: clamp(220px, 50vw, 360px);
-  scroll-snap-align: center;
-}
+    .carousel-arrow:hover span {
+      text-decoration: underline;
+    }
 
-.work img {
-  width: 100%;
-  display: block;
-}
+    /* LIGHTBOX (zoom view) */
 
-.work .caption {
-  font-size: 0.8rem;
-  margin-top: 6px;
-}
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+      z-index: 50;
+    }
+
+    .lightbox.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-inner {
+      max-width: 92vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .lightbox-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    .lightbox-close {
+      border: none;
+      background: transparent;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 2px 4px;
+    }
+
+    .lightbox-img-wrapper {
+      border: 1px solid #ddd;
+      background: #ffffff;
+      padding: 6px;
+    }
+
+    .lightbox-img-wrapper img {
+      max-width: 100%;
+      max-height: 80vh;
+      display: block;
+      object-fit: contain;
+    }
+
+    .lightbox-caption {
+      font-size: 0.8rem;
+    }
   </style>
 </head>
 <body>
@@ -109,28 +190,158 @@
 
     <h2>Selected works</h2>
 
-    <!-- Replace image filenames + captions with your own -->
+    <!-- CAROUSEL -->
+    <div class="carousel" id="carousel">
+      <div class="carousel-track">
+        <!-- Slide 1 -->
+        <div class="carousel-slide is-active" data-caption="Intricate study I · ink on paper">
+          <img
+            src="images/king no.1 30x40.JPG"
+            alt="Intricate study I by Michael"
+            class="carousel-image"
+          />
+          <div class="carousel-caption">Intricate study I · ink on paper</div>
+        </div>
 
-<div class="gallery-strip">
-  <div class="work">
-    <img src="images/king no.1 30x40.JPG" alt="Intricate illustration by Vas">
-    <div class="caption">Intricate study I · ink on paper</div>
+        <!-- Slide 2 -->
+        <div class="carousel-slide" data-caption="Intricate study II · ink on paper">
+          <img
+            src="images/king no.1 30x40.JPG"
+            alt="Intricate study II by Michael"
+            class="carousel-image"
+          />
+          <div class="carousel-caption">Intricate study II · ink on paper</div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-slide" data-caption="Pattern field · pen and marker">
+          <img
+            src="images/king no.1 30x40.JPG"
+            alt="Pattern field by Michael"
+            class="carousel-image"
+          />
+          <div class="carousel-caption">Pattern field · pen and marker</div>
+        </div>
+
+        <!-- Add more .carousel-slide blocks as needed -->
+      </div>
+
+      <div class="carousel-arrows">
+        <button class="carousel-arrow" type="button" data-direction="prev">
+          <span>← Previous</span>
+        </button>
+        <button class="carousel-arrow" type="button" data-direction="next">
+          <span>Next →</span>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <div class="work">
-    <img src="images/king no.1 30x40.JPG" alt="Intricate illustration by Vas">
-    <div class="caption">Intricate study II · ink on paper</div>
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <div class="lightbox-top">
+        <div>Michael</div>
+        <button class="lightbox-close" type="button" aria-label="Close zoom view">×</button>
+      </div>
+      <div class="lightbox-img-wrapper">
+        <img id="lightbox-img" src="" alt="">
+      </div>
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
   </div>
 
-  <div class="work">
-    <img src="images/king no.1 30x40.JPG" alt="Pattern illustration by Vas">
-    <div class="caption">Pattern field · pen and marker</div>
-  </div>
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll(".carousel-slide"));
+      const prevBtn = document.querySelector('.carousel-arrow[data-direction="prev"]');
+      const nextBtn = document.querySelector('.carousel-arrow[data-direction="next"]');
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      const lightboxClose = document.querySelector(".lightbox-close");
 
-  <!-- add more images as needed -->
-</div>
-  </div>
+      let current = 0;
+      let autoplayTimer = null;
+      const AUTOPLAY_INTERVAL = 6000; // ms
 
+      function showSlide(index) {
+        slides[current].classList.remove("is-active");
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add("is-active");
+      }
 
+      function nextSlide() {
+        showSlide(current + 1);
+      }
+
+      function prevSlide() {
+        showSlide(current - 1);
+      }
+
+      function startAutoplay() {
+        stopAutoplay();
+        autoplayTimer = setInterval(nextSlide, AUTOPLAY_INTERVAL);
+      }
+
+      function stopAutoplay() {
+        if (autoplayTimer) {
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      // Arrow buttons
+      prevBtn.addEventListener("click", function () {
+        stopAutoplay();
+        prevSlide();
+        startAutoplay();
+      });
+
+      nextBtn.addEventListener("click", function () {
+        stopAutoplay();
+        nextSlide();
+        startAutoplay();
+      });
+
+      // Click to open lightbox
+      slides.forEach(function (slide) {
+        const img = slide.querySelector("img");
+        img.addEventListener("click", function () {
+          const src = img.getAttribute("src");
+          const caption = slide.getAttribute("data-caption") || "";
+          lightboxImg.src = src;
+          lightboxImg.alt = caption;
+          lightboxCaption.textContent = caption;
+          lightbox.classList.add("is-open");
+        });
+      });
+
+      // Close lightbox
+      lightboxClose.addEventListener("click", function () {
+        lightbox.classList.remove("is-open");
+        lightboxImg.src = "";
+      });
+
+      lightbox.addEventListener("click", function (event) {
+        if (event.target === lightbox) {
+          lightbox.classList.remove("is-open");
+          lightboxImg.src = "";
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+          lightbox.classList.remove("is-open");
+          lightboxImg.src = "";
+        }
+      });
+
+      // Start autoplay on load
+      if (slides.length > 1) {
+        startAutoplay();
+      }
+    })();
+  </script>
 </body>
 </html>
