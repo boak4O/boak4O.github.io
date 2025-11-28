@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Michael – King Series</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      padding: 32px 16px 48px;
+      background: #ffffff;
+      color: #000000;
+      font-family: system-ui, sans-serif;
+    }
+    .page { max-width: 720px; margin: 0 auto; }
+    a { color: #000; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .back { font-size: 0.8rem; margin-bottom: 20px; }
+    h1 {
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .subtitle { font-size: 0.9rem; margin-bottom: 18px; }
+    .text { font-size: 0.95rem; line-height: 1.6; margin-bottom: 26px; }
+
+    /* simple fade carousel reused here */
+
+    .carousel { position: relative; margin-top: 8px; }
+    .carousel-track {
+      position: relative;
+      overflow: hidden;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40vh;
+    }
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .carousel-slide.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .carousel-image {
+      max-width: 100%;
+      max-height: 70vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      background: #ffffff;
+      cursor: zoom-in;
+      display: block;
+    }
+    .carousel-caption {
+      font-size: 0.8rem;
+      margin-top: 6px;
+    }
+    .carousel-arrows {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 0.8rem;
+    }
+    .carousel-arrow {
+      border: none;
+      background: transparent;
+      padding: 2px;
+      cursor: pointer;
+    }
+    .carousel-arrow span { padding: 2px 4px; }
+    .carousel-arrow:hover span { text-decoration: underline; }
+
+    /* lightbox */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+      z-index: 50;
+    }
+    .lightbox.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox-inner {
+      max-width: 92vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .lightbox-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+    .lightbox-close {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 2px 4px;
+    }
+    .lightbox-img-wrapper {
+      border: 1px solid #ddd;
+      padding: 6px;
+      background: #ffffff;
+    }
+    .lightbox-img-wrapper img {
+      max-width: 100%;
+      max-height: 80vh;
+      display: block;
+      object-fit: contain;
+    }
+    .lightbox-caption { font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="back">
+      <a href="michael.html">← Michael</a>
+    </div>
+
+    <h1>King Series</h1>
+    <div class="subtitle">Michael · project</div>
+    <p class="text">
+      Short text about this project – themes, approach, materials, where and when it was made.
+      You can edit this later with more detail.
+    </p>
+
+    <div class="carousel" id="carousel">
+      <div class="carousel-track">
+        <div class="carousel-slide is-active" data-caption="King no.1 · ink on paper">
+          <img src="images/michael/king-series/ks-01.jpg" alt="King no.1 by Michael" class="carousel-image">
+          <div class="carousel-caption">King no.1 · ink on paper</div>
+        </div>
+        <div class="carousel-slide" data-caption="King no.2 · ink on paper">
+          <img src="images/michael/king-series/ks-02.jpg" alt="King no.2 by Michael" class="carousel-image">
+          <div class="carousel-caption">King no.2 · ink on paper</div>
+        </div>
+        <div class="carousel-slide" data-caption="King no.3 · ink on paper">
+          <img src="images/michael/king-series/ks-03.jpg" alt="King no.3 by Michael" class="carousel-image">
+          <div class="carousel-caption">King no.3 · ink on paper</div>
+        </div>
+      </div>
+
+      <div class="carousel-arrows">
+        <button class="carousel-arrow" type="button" data-direction="prev">
+          <span>← Previous</span>
+        </button>
+        <button class="carousel-arrow" type="button" data-direction="next">
+          <span>Next →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <div class="lightbox-top">
+        <div>Michael · King Series</div>
+        <button class="lightbox-close" type="button" aria-label="Close zoom view">×</button>
+      </div>
+      <div class="lightbox-img-wrapper">
+        <img id="lightbox-img" src="" alt="">
+      </div>
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll(".carousel-slide"));
+      const prevBtn = document.querySelector('.carousel-arrow[data-direction="prev"]');
+      const nextBtn = document.querySelector('.carousel-arrow[data-direction="next"]');
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      const lightboxClose = document.querySelector(".lightbox-close");
+
+      let current = 0;
+
+      function showSlide(index) {
+        slides[current].classList.remove("is-active");
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add("is-active");
+      }
+
+      prevBtn.addEventListener("click", function () {
+        showSlide(current - 1);
+      });
+
+      nextBtn.addEventListener("click", function () {
+        showSlide(current + 1);
+      });
+
+      slides.forEach(function (slide) {
+        const img = slide.querySelector("img");
+        img.addEventListener("click", function () {
+          const src = img.getAttribute("src");
+          const caption = slide.getAttribute("data-caption") || "";
+          lightboxImg.src = src;
+          lightboxImg.alt = caption;
+          lightboxCaption.textContent = caption;
+          lightbox.classList.add("is-open");
+        });
+      });
+
+      lightboxClose.addEventListener("click", function () {
+        lightbox.classList.remove("is-open");
+        lightboxImg.src = "";
+      });
+
+      lightbox.addEventListener("click", function (event) {
+        if (event.target === lightbox) {
+          lightbox.classList.remove("is-open");
+          lightboxImg.src = "";
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+          lightbox.classList.remove("is-open");
+          lightboxImg.src = "";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
